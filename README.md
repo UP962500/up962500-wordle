@@ -58,10 +58,10 @@ A better version of the popular game known as "Wordle" created by me.
 
 # Requirements
 
-Must have NodeJS installed
+- Must have NodeJS installed
 
 # Usage
 
-Step 1) Run npm install  
-Step 2) Run npm start  
-Step 3) Navigate to localhost:8080 in your browser
+1. Run npm install  
+2. Run npm start  
+3. Navigate to localhost:8080 in your browser
