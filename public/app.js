@@ -32,6 +32,12 @@ let currentColumnPos = 1;
 let guesses = [];
 let positionCount = 0;
 
+function removeClass(buttonName, className) {
+  setTimeout(() => {
+    buttonName.classList.remove(`${className}`);
+  }, "100");
+}
+
 // Create event listeners for every button except for Enter and Delete
 for (let i = 0; i < buttons.length; i++) {
   let winMessage = document.querySelector(".win-message");
@@ -44,7 +50,6 @@ for (let i = 0; i < buttons.length; i++) {
   const button = document.querySelector(`.${buttons[i]}`);
   button.addEventListener("click", () => {
     const pressedButtonValue = button.value;
-    console.log(currentRowPos, " ", currentColumnPos);
     const paragraph = document.querySelector(
       `.p-${currentRowPos}-${currentColumnPos}`
     );
@@ -58,26 +63,18 @@ for (let i = 0; i < buttons.length; i++) {
     }
 
     button.classList.add("click");
-    setTimeout(() => {
-      button.classList.remove("click");
-    }, "100");
+    removeClass(button, "click");
 
     paragraph.textContent += pressedButtonValue;
     guesses.push(pressedButtonValue);
-    console.log(guesses);
     currentColumnPos++;
     positionCount++;
   });
 }
 
-// Create event listener for Enter button
-const enterButton = document.querySelector(".enter");
-
-enterButton.addEventListener("click", async () => {
+async function enterButtonFunction() {
   enterButton.classList.add("click");
-  setTimeout(() => {
-    enterButton.classList.remove("click");
-  }, "100");
+  removeClass(enterButton, "click");
 
   if (currentColumnPos > 5) {
     // Check for validity of word
@@ -87,10 +84,9 @@ enterButton.addEventListener("click", async () => {
 
     // Word not in list message appears for invalid words
     if (response.status === 404) {
-      const message = document.querySelector(".incorrect-message");
-      message.textContent = "Word not in list!";
+      incorrectMessage.textContent = "Word not in list!";
       setTimeout(() => {
-        message.textContent = "";
+        incorrectMessage.textContent = "";
       }, "2000");
       return;
     }
@@ -108,14 +104,16 @@ enterButton.addEventListener("click", async () => {
         paragraph.classList.add("flipAnimation");
         paragraph.classList.add("green");
       }
-      const winMessage = document.querySelector(".win-message");
       return (winMessage.textContent = "Congratulations! You win.");
     }
 
     // Lose scenario, you have not won and no more guesses left
     if (currentRowPos >= 6) {
-      const loseMessage = document.querySelector(".lose-message");
       loseMessage.textContent = "Game Over! You Lose.";
+      const path = "/display";
+      let response = await fetch(path);
+      response = await response.json();
+      loseMessage.textContent = `Game Over! You Lose. The word was ${response}.`;
     }
 
     // Completely wrong word guessed with no matching letters
@@ -190,23 +188,16 @@ enterButton.addEventListener("click", async () => {
     currentRowPos++;
     return;
   }
-});
+}
 
-// Create event listener for Delete button
-const deleteButton = document.querySelector(".Backspace");
-
-deleteButton.addEventListener("click", () => {
+function deleteButtonFunction() {
   deleteButton.classList.add("click");
-  setTimeout(() => {
-    deleteButton.classList.remove("click");
-  }, "100");
+  removeClass(deleteButton, "click");
 
-  const winMessage = document.querySelector(".win-message");
   if (winMessage.textContent === "Congratulations! You win.") {
     return;
   }
 
-  const loseMessage = document.querySelector(".lose-message");
   if (loseMessage.textContent === "Game Over! You Lose.") {
     return;
   }
@@ -216,17 +207,15 @@ deleteButton.addEventListener("click", () => {
   }
 
   guesses.pop();
-  console.log(guesses);
   const paragraph = document.querySelector(
     `.p-${currentRowPos}-${currentColumnPos - 1}`
   );
   paragraph.textContent = "";
   positionCount--;
   currentColumnPos--;
-});
+}
 
-// Event listener for key presses (so user can use keyboard)
-document.addEventListener("keyup", (e) => {
+function keyboardFunction(e) {
   if (
     buttons.includes(e.key.toUpperCase()) ||
     e.key === "Enter" ||
@@ -234,21 +223,13 @@ document.addEventListener("keyup", (e) => {
   ) {
     document.querySelector(`.${e.key}`).click();
   }
-});
+}
 
-// Event listener for "Play Again!" button
-const playAgainButton = document.querySelector(".play");
-
-playAgainButton.addEventListener("click", async () => {
+async function playAgainFunction() {
   playAgainButton.classList.add("click");
-  setTimeout(() => {
-    playAgainButton.classList.remove("click");
-  }, "100");
+  removeClass(playAgainButton, "click");
 
-  console.log(positionCount);
   for (let i = positionCount; i >= 1; i--) {
-    let winMessage = document.querySelector(".win-message");
-    let loseMessage = document.querySelector(".lose-message");
     const paragraph = document.querySelector(`.p-${i}`);
     const paragraphDiv = document.querySelector(`.p-${i}`).parentElement;
     paragraph.textContent = "";
@@ -265,6 +246,19 @@ playAgainButton.addEventListener("click", async () => {
   currentColumnPos = 1;
   guesses = [];
 
-  const path = "update/";
+  const path = "/update";
   await fetch(path);
-});
+}
+
+let winMessage = document.querySelector(".win-message");
+let loseMessage = document.querySelector(".lose-message");
+let incorrectMessage = document.querySelector(".incorrect-message");
+
+const enterButton = document.querySelector(".enter");
+const deleteButton = document.querySelector(".Backspace");
+const playAgainButton = document.querySelector(".play");
+
+enterButton.addEventListener("click", enterButtonFunction);
+deleteButton.addEventListener("click", deleteButtonFunction);
+document.addEventListener("keyup", keyboardFunction);
+playAgainButton.addEventListener("click", playAgainFunction);

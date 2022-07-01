@@ -1,19 +1,18 @@
 import sqlite3 from "sqlite3";
 import fetch from "node-fetch";
 import { open } from "sqlite";
-import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import path from "path";
 import { dirname } from "path";
 import checkWord from "./wordCheck.js";
-const require = createRequire(import.meta.url);
-const express = require("express");
+import express from "express";
 
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-app.use(express.static(path.join(__dirname, "public")));
+const filePath = path.join(__dirname, "public");
+app.use(express.static(filePath));
 app.use(express.urlencoded({ extended: true }));
 
 let wordToBeGuessed = "";
@@ -23,19 +22,7 @@ const dbPromise = open({
   driver: sqlite3.Database,
 });
 
-app.get("/", (req, res) => {
-  res.send("index");
-});
-
-app.get("/check/:word", async (req, res) => {
-  const response = checkWord(
-    req.params.word.toUpperCase(),
-    wordToBeGuessed.toUpperCase()
-  );
-  res.json(response);
-});
-
-app.get("/update", async (req, res) => {
+async function update() {
   const db = await dbPromise;
   let randomInt = Math.round(Math.random() * 1);
   if (randomInt === 0) {
@@ -50,22 +37,10 @@ app.get("/update", async (req, res) => {
   wordToBeGuessed = JSON.stringify(wordToBeGuessed);
   wordToBeGuessed = JSON.parse(wordToBeGuessed);
   wordToBeGuessed = wordToBeGuessed[0].word;
-  return console.log("New word is: " + wordToBeGuessed);
-});
+  return "New word is: " + wordToBeGuessed;
+}
 
-app.get("/submit", (req, res) => {
-  res.sendFile(__dirname + "/public/submit.html");
-});
-
-app.get("/success", (req, res) => {
-  res.sendFile(__dirname + "/public/success.html");
-});
-
-app.get("/error", (req, res) => {
-  res.sendFile(__dirname + "/public/error.html");
-});
-
-app.post("/submit", async (req, res) => {
+async function submit(req, res) {
   const db = await dbPromise;
   const word = req.body.word;
 
@@ -78,7 +53,7 @@ app.post("/submit", async (req, res) => {
   );
 
   if (response.status === 404) {
-    return res.sendFile(__dirname + "/public/error.html");
+    return res.sendFile("error.html", { root: filePath });
   }
 
   const duplicate = await db.get(
@@ -95,8 +70,40 @@ app.post("/submit", async (req, res) => {
     console.log("Word added to database!");
   }
 
-  res.sendFile(__dirname + "/public/success.html");
+  return res.sendFile("success.html", { root: filePath });
+}
+
+app.get("/", (req, res) => {
+  res.send("index");
 });
+
+app.get("/check/:word", async (req, res) => {
+  const response = checkWord(
+    req.params.word.toUpperCase(),
+    wordToBeGuessed.toUpperCase()
+  );
+  res.json(response);
+});
+
+app.get("/update", update);
+
+app.get("/display", (req, res) => {
+  res.json(wordToBeGuessed);
+});
+
+app.get("/submit", (req, res) => {
+  res.sendFile("submit.html", { root: filePath });
+});
+
+app.get("/success", (req, res) => {
+  res.sendFile("success.html", { root: filePath });
+});
+
+app.get("/error", (req, res) => {
+  res.sendFile("error.html", { root: filePath });
+});
+
+app.post("/submit", submit);
 
 const setup = async () => {
   const db = await dbPromise;
@@ -117,7 +124,6 @@ const setup = async () => {
   wordToBeGuessed = wordToBeGuessed[0].word;
   app.listen("8080", () => {
     console.log("Server is up on port 8080.");
-    console.log("First word is: " + wordToBeGuessed);
   });
 };
 

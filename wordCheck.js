@@ -7,6 +7,7 @@ const checkWord = (guesses, wordToBeGuessed) => {
 
   guesses = guesses.split("");
   wordToBeGuessed = wordToBeGuessed.split("");
+  // mergedArray = [...guesses, ...wordToBeGuessed];
   // Completely wrong word guessed with no matching letters
   if (!guesses.some((guess) => wordToBeGuessed.includes(guess))) {
     return "Completely wrong guess!";
@@ -27,11 +28,6 @@ const checkWord = (guesses, wordToBeGuessed) => {
     const wrongLetters = guesses.filter(
       (guess) => !wordToBeGuessed.includes(guess)
     );
-    console.log("Correct letters with wrong position are: " + correctLetters);
-    console.log(
-      "Correct letters and correct positions are: " + correctLettersAndPos
-    );
-    console.log("Wrong letters are: " + wrongLetters);
 
     const allArrays = {
       correctLettersArray: [],
