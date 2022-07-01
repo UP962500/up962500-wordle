@@ -250,6 +250,29 @@ async function playAgainFunction() {
   await fetch(path);
 }
 
+function prepareHandles() {
+  let winMessage = document.querySelector(".win-message");
+  let loseMessage = document.querySelector(".lose-message");
+  let incorrectMessage = document.querySelector(".incorrect-message");
+  const enterButton = document.querySelector(".enter");
+  const deleteButton = document.querySelector(".Backspace");
+  const playAgainButton = document.querySelector(".play");
+}
+
+function addEventHandlers() {
+  enterButton.addEventListener("click", enterButtonFunction);
+  deleteButton.addEventListener("click", deleteButtonFunction);
+  document.addEventListener("keyup", keyboardFunction);
+  playAgainButton.addEventListener("click", playAgainFunction);
+}
+
+function pageLoaded() {
+  prepareHandles();
+  addEventHandlers();
+}
+
+window.addEventListener('load', pageLoaded);
+
 let winMessage = document.querySelector(".win-message");
 let loseMessage = document.querySelector(".lose-message");
 let incorrectMessage = document.querySelector(".incorrect-message");
