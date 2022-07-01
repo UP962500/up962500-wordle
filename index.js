@@ -1,7 +1,7 @@
 import { fileURLToPath } from "url";
 import path from "path";
 import { dirname } from "path";
-import { setup , update, submit } from "./wordDB.js";
+import * as wdb from "./wordDB.js";
 import checkWord from "./wordCheck.js";
 import express from "express";
 
@@ -23,7 +23,7 @@ function asyncWrap(f) {
 
 let wordToBeGuessed = "";
 
-wordToBeGuessed = await setup();
+wordToBeGuessed = await wdb.setup();
 console.log(wordToBeGuessed);
 
 app.get("/", (req, res) => {
@@ -38,7 +38,13 @@ app.get("/check/:word", async (req, res) => {
   res.json(response);
 });
 
-app.get("/update", asyncWrap(update));
+async function prepareNewGame(req, res) {
+  wordToBeGuessed = await wdb.update();
+  console.log("New game, new word is: ", wordToBeGuessed);
+  res.sendStatus(200);
+}
+
+app.get("/update", asyncWrap(prepareNewGame));
 
 app.get("/display", (req, res) => {
   res.json(wordToBeGuessed);
@@ -56,7 +62,7 @@ app.get("/error", (req, res) => {
   res.sendFile("error.html", { root: filePath });
 });
 
-app.post("/submit", asyncWrap(submit));
+app.post("/submit", asyncWrap(wdb.submit));
 
 app.listen("8080", () => {
   console.log("Server is up on port 8080.");

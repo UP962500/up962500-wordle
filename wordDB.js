@@ -40,23 +40,14 @@ export async function setup() {
   return wordToBeGuessed = wordToBeGuessed[0].word;
 };
 
-export async function update(req, res) {
+export async function update() {
   const db = await dbPromise;
-  let randomInt = Math.round(Math.random() * 1);
-  if (randomInt === 0) {
-    wordToBeGuessed = await db.all(
-      "SELECT * FROM Words ORDER BY RANDOM() LIMIT 1;"
-    );
-  } else {
-    wordToBeGuessed = await db.all(
-      "SELECT * FROM UserWords ORDER BY RANDOM() LIMIT 1;"
-    );
-  }
-  wordToBeGuessed = JSON.stringify(wordToBeGuessed);
-  wordToBeGuessed = JSON.parse(wordToBeGuessed);
-  wordToBeGuessed = wordToBeGuessed[0].word;
-  console.log("New word is: " + wordToBeGuessed);
-}
+  const randomInt = Math.round(Math.random() * 1);
+  const source = (randomInt === 0) ? "Words" : "UserWords";
+  const query = `SELECT word FROM ${source} ORDER BY RANDOM() LIMIT 1;`;
+  const result = await db.all( query );
+  return result[0].word;
+};
 
 export async function submit(req, res) {
   const db = await dbPromise;
