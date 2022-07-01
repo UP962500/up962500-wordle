@@ -1,0 +1,79 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-1, .container-2, .container-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.h1-message {
+  margin-top: 300px;
+  width: 1100px;
+  color: rgb(99, 88, 88);
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 34px; 
+}
+
+a {
+  color: #888888;
+  text-decoration: none;
+  font-size: 38px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+a:hover {
+  background-color: #e7e7e7;
+}
+
+a:active {
+  background-color: #e7e7e7;
+}
+
+.a-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  color: rgb(99, 88, 88);
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 48px;
+  margin-top: 300px;
+  margin-bottom: 20px;
+}
+
+.submit {
+  background-color: rgb(99, 88, 88);
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-bottom: 28px;
+}
+
+.submit:hover {
+  background-color: rgb(153, 143, 143);
+}
+
+.text-input {
+  text-align: center;;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 20px;
+}

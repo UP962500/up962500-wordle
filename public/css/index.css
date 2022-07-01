@@ -1,0 +1,239 @@
+a {
+  color: #888888;
+  text-decoration: none;
+  font-size: 18px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+a:hover {
+  background-color: #e7e7e7;
+}
+
+a:active {
+  background-color: #e7e7e7;
+}
+
+button {
+  background-color: rgb(211, 214, 218);
+  color: black;
+  height: 50px;
+  width: 60px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: grey;
+}
+
+.board-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.click {
+  background-color: rgb(110, 100, 100);
+}
+
+.flipAnimation {
+  animation: flipH 2s linear;
+}
+
+@keyframes flipH {
+  50% {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+p {
+  font-weight: bold;
+  font-size: 28px;
+  margin-left: 14px;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.Backspace {
+  width: 85px;
+}
+
+.enter {
+  width: 75px;
+}
+
+.green {
+  background-color: rgb(106, 170, 100);
+}
+
+.grey {
+  background-color: rgb(120, 124, 126);
+}
+
+.keyboard-2 {
+  margin-left: 26px;
+}
+
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lose-message {
+  color: rgb(151, 23, 23);
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.incorrect-message {
+  color: rgb(167, 0, 0);
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.play {
+  height: 70px;
+  width: 120px;
+  margin-top: 20px;
+}
+
+.play-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-id {
+  color: black;
+  font-family: "Arial";
+  font-weight: normal;
+  font-size: 40px;
+}
+
+.win-message {
+  color: rgb(38, 134, 38);
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.wordle-board-row-1,
+.wordle-board-row-2,
+.wordle-board-row-3,
+.wordle-board-row-4,
+.wordle-board-row-5,
+.wordle-board-row-6 {
+  display: flex;
+}
+
+.wordle-board-row-1-column-1,
+.wordle-board-row-1-column-2,
+.wordle-board-row-1-column-3,
+.wordle-board-row-1-column-4,
+.wordle-board-row-1-column-5 {
+  color: black;
+  border: 2px solid;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.wordle-board-row-2-column-1,
+.wordle-board-row-2-column-2,
+.wordle-board-row-2-column-3,
+.wordle-board-row-2-column-4,
+.wordle-board-row-2-column-5 {
+  color: black;
+  border: 2px solid;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.wordle-board-row-3-column-1,
+.wordle-board-row-3-column-2,
+.wordle-board-row-3-column-3,
+.wordle-board-row-3-column-4,
+.wordle-board-row-3-column-5 {
+  color: black;
+  border: 2px solid;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.wordle-board-row-4-column-1,
+.wordle-board-row-4-column-2,
+.wordle-board-row-4-column-3,
+.wordle-board-row-4-column-4,
+.wordle-board-row-4-column-5 {
+  color: black;
+  border: 2px solid;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.wordle-board-row-5-column-1,
+.wordle-board-row-5-column-2,
+.wordle-board-row-5-column-3,
+.wordle-board-row-5-column-4,
+.wordle-board-row-5-column-5 {
+  color: black;
+  border: 2px solid;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.wordle-board-row-6-column-1,
+.wordle-board-row-6-column-2,
+.wordle-board-row-6-column-3,
+.wordle-board-row-6-column-4,
+.wordle-board-row-6-column-5 {
+  color: black;
+  border: 2px solid;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.yellow {
+  background-color: rgb(201, 180, 88);
+}
