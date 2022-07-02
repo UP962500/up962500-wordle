@@ -215,6 +215,7 @@ function deleteButtonFunction() {
     `.p-${currentRowPos}-${currentColumnPos - 1}`
   );
   paragraph.textContent = "";
+  paragraph.classList.remove("w-letter");
   positionCount--;
   currentColumnPos--;
 }
@@ -237,6 +238,7 @@ async function playAgainFunction() {
     const paragraph = document.querySelector(`.p-${i}`);
     const paragraphDiv = document.querySelector(`.p-${i}`).parentElement;
     paragraph.textContent = "";
+    paragraph.classList.remove("w-letter");
     paragraphDiv.classList.remove("green");
     paragraphDiv.classList.remove("yellow");
     paragraphDiv.classList.remove("grey");
@@ -275,7 +277,7 @@ function pageLoaded() {
   addEventHandlers();
 }
 
-window.addEventListener('load', pageLoaded);
+window.addEventListener("load", pageLoaded);
 
 let winMessage = document.querySelector(".win-message");
 let loseMessage = document.querySelector(".lose-message");

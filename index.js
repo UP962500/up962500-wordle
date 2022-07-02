@@ -12,12 +12,12 @@ const __dirname = dirname(__filename);
 const filePath = path.join(__dirname, "public");
 app.use(express.static(filePath));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // asyncWrap function taken from messageboard stage 8 (not mine)
 function asyncWrap(f) {
   return (req, res, next) => {
-    Promise.resolve(f(req, res, next))
-      .catch((e) => next(e || new Error()));
+    Promise.resolve(f(req, res, next)).catch((e) => next(e || new Error()));
   };
 }
 

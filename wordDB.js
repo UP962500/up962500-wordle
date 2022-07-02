@@ -27,17 +27,17 @@ export async function update(bool) {
     await db.migrate();
   }
   const randomInt = Math.round(Math.random() * 1);
-  const source = (randomInt === 0) ? "Words" : "UserWords";
+  const source = randomInt === 0 ? "Words" : "UserWords";
   const query = `SELECT word FROM ${source} ORDER BY RANDOM() LIMIT 1;`;
-  const result = await db.all( query );
+  const result = await db.all(query);
   return result[0].word;
-};
+}
 
 export async function submit(req, res) {
   const db = await dbPromise;
   const word = req.body.word;
 
-  if (!(word.split("").length === 5)) {
+  if (word.split("").length !== 5) {
     return;
   }
 
