@@ -35,19 +35,7 @@ export async function update(bool) {
 
 export async function submit(req, res) {
   const db = await dbPromise;
-  const word = req.body.word;
-
-  if (word.split("").length !== 5) {
-    return;
-  }
-
-  const response = await fetch(
-    `https://dictionary-dot-sse-2020.nw.r.appspot.com/${word}`
-  );
-
-  if (response.status === 404) {
-    return res.sendFile("error.html", { root: filePath });
-  }
+  const word = req.body.val;
 
   const duplicate = await db.get(
     "SELECT word FROM Words WHERE word = ?",
@@ -62,7 +50,8 @@ export async function submit(req, res) {
   if (!duplicate && !userWordsduplicate) {
     await db.run("INSERT INTO UserWords (word) VALUES (?);", word);
     console.log("Word added to database!");
+    return res.json({ msg: "Thank you. Word successfully added to DB!", code: "ADDED" });
   }
 
-  return res.sendFile("success.html", { root: filePath });
+  return res.json({ msg: "Word is already in database. Thank you", code: "USED" });
 }
