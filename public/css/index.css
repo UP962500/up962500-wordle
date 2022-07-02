@@ -57,10 +57,8 @@ button:hover {
 p {
   font-weight: bold;
   font-size: 28px;
-  margin-left: 14px;
+  margin-left: 18px;
   margin-top: 10px;
-  align-items: center;
-  justify-content: center;
 }
 
 .Backspace {
@@ -232,6 +230,10 @@ p {
   width: 50px;
   margin-bottom: 10px;
   margin-left: 10px;
+}
+
+.w-letter {
+  margin-left: 10.5px;
 }
 
 .yellow {

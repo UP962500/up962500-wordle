@@ -21,27 +21,11 @@ const dbPromise = open({
   driver: sqlite3.Database,
 });
 
-export async function setup() {
+export async function update(bool) {
   const db = await dbPromise;
-  await db.migrate();
-  // randomInt will decide which table to select values from
-  let randomInt = Math.round(Math.random() * 1);
-  if (randomInt === 0) {
-    wordToBeGuessed = await db.all(
-      "SELECT * FROM Words ORDER BY RANDOM() LIMIT 1;"
-    );
-  } else {
-    wordToBeGuessed = await db.all(
-      "SELECT * FROM UserWords ORDER BY RANDOM() LIMIT 1;"
-    );
+  if (bool) {
+    await db.migrate();
   }
-  wordToBeGuessed = JSON.stringify(wordToBeGuessed);
-  wordToBeGuessed = JSON.parse(wordToBeGuessed);
-  return wordToBeGuessed = wordToBeGuessed[0].word;
-};
-
-export async function update() {
-  const db = await dbPromise;
   const randomInt = Math.round(Math.random() * 1);
   const source = (randomInt === 0) ? "Words" : "UserWords";
   const query = `SELECT word FROM ${source} ORDER BY RANDOM() LIMIT 1;`;

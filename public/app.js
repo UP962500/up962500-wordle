@@ -62,6 +62,10 @@ for (let i = 0; i < buttons.length; i++) {
       return;
     }
 
+    if (pressedButtonValue === "W") {
+      paragraph.classList.add("w-letter");
+    }
+
     button.classList.add("click");
     removeClass(button, "click");
 
