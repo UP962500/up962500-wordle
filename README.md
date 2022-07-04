@@ -28,7 +28,7 @@ A better version of the popular game known as "Wordle" created by me.
 
 # Explanation of how I implemented game logic
 
-1. I started off by making initalizing a few global variables that I used to make the keyboard and to track certain things about where the users position was on the board. The global variables I used are:
+1. I started off by initalizing a few global variables that I used to make the keyboard and to track certain things about where the users position was on the board. The global variables I used are:
   
    - buttons: This was an array I created with all the values of the alphabet letters in a keyboard in order to make it easier to make event listeners for each key. With an array like this, I was able to create event listeners for all those buttons with a simple for loop, instead of manually writing out each event listener for each key.
   
