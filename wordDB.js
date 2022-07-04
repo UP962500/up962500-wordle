@@ -35,7 +35,7 @@ export async function update(bool) {
 
 export async function submit(req, res) {
   const db = await dbPromise;
-  const word = req.body.val;
+  const word = req.body.val.toLowerCase();
 
   const duplicate = await db.get(
     "SELECT word FROM Words WHERE word = ?",
