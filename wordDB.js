@@ -1,5 +1,4 @@
 import sqlite3 from "sqlite3";
-import fetch from "node-fetch";
 import { open } from "sqlite";
 import { fileURLToPath } from "url";
 import path from "path";
@@ -53,5 +52,5 @@ export async function submit(req, res) {
     return res.json({ msg: "Thank you. Word successfully added to DB!", code: "ADDED" });
   }
 
-  return res.json({ msg: "Word is already in database. Thank you", code: "USED" });
+  return res.json({ msg: "Word is already in database. Thank you.", code: "USED" });
 }
