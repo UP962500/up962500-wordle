@@ -241,6 +241,7 @@ p {
 
 .wordle {
   border: 2px solid black;
+  color: black;
 }
 
 .orange {
