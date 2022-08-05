@@ -247,6 +247,10 @@ function deleteButtonFunction() {
     return;
   }
 
+  if (guesses.includes(-1)) {
+    return;
+  }
+
   guesses.pop();
   const paragraph = document.querySelector(
     `.p-${currentRowPos}-${currentColumnPos - 1}`
