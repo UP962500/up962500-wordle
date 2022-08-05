@@ -240,7 +240,7 @@ p {
 }
 
 .wordle {
-  color: black;
+  border: 2px solid black;
 }
 
 .orange {
