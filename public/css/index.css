@@ -241,12 +241,10 @@ p {
 
 .wordle {
   color: black;
-  transition: color 0.1s;
 }
 
 .orange {
   color: orange;
-  transition: color 0.1s;
 }
 
 .i-letter {
