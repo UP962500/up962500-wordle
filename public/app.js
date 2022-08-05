@@ -150,7 +150,6 @@ async function enterButtonFunction() {
 
     // Lose scenario, you have not won and no more guesses left
     if (currentRowPos >= 6) {
-      loseMessage.textContent = "Game Over! You Lose.";
       const path = "/display";
       let response = await fetch(path);
       response = await response.json();
