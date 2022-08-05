@@ -244,7 +244,7 @@ p {
 }
 
 .orange {
-  background-color: orange;
+  border: 2px solid orange
 }
 
 .i-letter {
