@@ -309,6 +309,12 @@ function clickTile() {
           return;
         }
 
+        if (guesses.length === 4) {
+          if ((j + 1) > 3) {
+            return;
+          }
+        }
+
         if (i !== currentRowPos) {
           return;
         }
