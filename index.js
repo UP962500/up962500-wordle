@@ -54,14 +54,6 @@ app.get("/submit", (req, res) => {
   res.sendFile("submit.html", { root: filePath });
 });
 
-app.get("/success", (req, res) => {
-  res.sendFile("success.html", { root: filePath });
-});
-
-app.get("/error", (req, res) => {
-  res.sendFile("error.html", { root: filePath });
-});
-
 app.post("/submit", asyncWrap(wdb.submit));
 
 app.listen("8080", () => {

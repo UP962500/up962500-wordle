@@ -13,8 +13,6 @@ const filePath = path.join(__dirname, "public");
 app.use(express.static(filePath));
 app.use(express.urlencoded({ extended: true }));
 
-let wordToBeGuessed = "";
-
 const dbPromise = open({
   filename: "data.db",
   driver: sqlite3.Database,
