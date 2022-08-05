@@ -43,7 +43,6 @@ const checkWord = (guesses, wordToBeGuessed) => {
 
     // Correct letters guessed with correct positions
     for (let i = 0; i < correctLettersAndPos.length; i++) {
-      let correctLettersAndPosArray = [];
       const correctLettersAndPosIndex = guesses.indexOf(
         correctLettersAndPos[i]
       );
@@ -52,7 +51,6 @@ const checkWord = (guesses, wordToBeGuessed) => {
 
     // Incorrect letters guessed
     for (let i = 0; i < wrongLetters.length; i++) {
-      let wrongLettersArray = [];
       const wrongLettersIndex = guesses.indexOf(wrongLetters[i]);
       allArrays.wrongLettersArray.push(wrongLettersIndex);
     }
