@@ -56,6 +56,6 @@ app.get("/submit", (req, res) => {
 
 app.post("/submit", asyncWrap(wdb.submit));
 
-app.listen("8080", () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("Server is up on port 8080.");
 });
