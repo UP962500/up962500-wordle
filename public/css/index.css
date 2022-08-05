@@ -20,6 +20,7 @@ button {
   height: 50px;
   width: 60px;
   cursor: pointer;
+  border: none;
   border-radius: 6px;
   font-size: 15px;
   font-weight: bold;
@@ -43,14 +44,15 @@ button:hover {
 
 .flipAnimation {
   animation: flipH 2s linear;
+  transition: animation 0.1s;
 }
 
 @keyframes flipH {
   50% {
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
   }
   to {
-    transform: rotateY(360deg);
+    transform: rotateX(360deg);
   }
 }
 
@@ -115,6 +117,10 @@ p {
   justify-content: center;
 }
 
+.div p {
+  color: black;
+}
+
 .play {
   height: 70px;
   width: 120px;
@@ -152,6 +158,7 @@ p {
 .wordle-board-row-5,
 .wordle-board-row-6 {
   display: flex;
+  user-select: none;
 }
 
 .wordle-board-row-1-column-1,
@@ -159,7 +166,7 @@ p {
 .wordle-board-row-1-column-3,
 .wordle-board-row-1-column-4,
 .wordle-board-row-1-column-5 {
-  color: black;
+  color: rgb(211, 214, 218);
   border: 2px solid;
   height: 50px;
   width: 50px;
@@ -172,7 +179,7 @@ p {
 .wordle-board-row-2-column-3,
 .wordle-board-row-2-column-4,
 .wordle-board-row-2-column-5 {
-  color: black;
+  color: rgb(211, 214, 218);
   border: 2px solid;
   height: 50px;
   width: 50px;
@@ -185,7 +192,7 @@ p {
 .wordle-board-row-3-column-3,
 .wordle-board-row-3-column-4,
 .wordle-board-row-3-column-5 {
-  color: black;
+  color: rgb(211, 214, 218);
   border: 2px solid;
   height: 50px;
   width: 50px;
@@ -198,7 +205,7 @@ p {
 .wordle-board-row-4-column-3,
 .wordle-board-row-4-column-4,
 .wordle-board-row-4-column-5 {
-  color: black;
+  color: rgb(211, 214, 218);
   border: 2px solid;
   height: 50px;
   width: 50px;
@@ -211,7 +218,7 @@ p {
 .wordle-board-row-5-column-3,
 .wordle-board-row-5-column-4,
 .wordle-board-row-5-column-5 {
-  color: black;
+  color: rgb(211, 214, 218);
   border: 2px solid;
   height: 50px;
   width: 50px;
@@ -224,7 +231,7 @@ p {
 .wordle-board-row-6-column-3,
 .wordle-board-row-6-column-4,
 .wordle-board-row-6-column-5 {
-  color: black;
+  color: rgb(211, 214, 218);
   border: 2px solid;
   height: 50px;
   width: 50px;
@@ -232,8 +239,18 @@ p {
   margin-left: 10px;
 }
 
+.wordle {
+  color: black;
+  transition: color 0.1s;
+}
+
+.orange {
+  color: orange;
+  transition: color 0.1s;
+}
+
 .i-letter {
-  margin-left: 16px;
+  margin-left: 17.5px;
 }
 
 .q-letter {

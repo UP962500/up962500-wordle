@@ -40,7 +40,7 @@ app.get("/check/:word", async (req, res) => {
 
 async function prepareNewGame(req, res) {
   wordToBeGuessed = await wdb.update(false);
-  console.log("New game, new word is: ", wordToBeGuessed);
+  console.log("New game, new word is:", wordToBeGuessed);
   res.sendStatus(200);
 }
 

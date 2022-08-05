@@ -29,6 +29,7 @@ let buttons = [
 ];
 let currentRowPos = 1;
 let currentColumnPos = 1;
+let oldColumnPos = 1;
 let guesses = [];
 let positionCount = 0;
 
@@ -78,10 +79,34 @@ for (let i = 0; i < buttons.length; i++) {
       paragraph.classList.add("q-letter");
     }
 
+    if (guesses.includes(-1)) {
+      currentColumnPos++;
+      const index = guesses.indexOf(-1);
+      guesses[index] = pressedButtonValue;
+
+      oldColumnPos = currentColumnPos;
+      currentColumnPos = index;
+
+      const newParagraph = document.querySelector(
+        `.p-${currentRowPos}-${currentColumnPos + 1}`
+      );
+
+      button.classList.add("click");
+      removeClass(button, "click");
+
+      newParagraph.textContent += pressedButtonValue;
+      newParagraph.parentElement.classList.add("wordle");
+      newParagraph.parentElement.classList.remove("orange");
+
+      currentColumnPos = oldColumnPos;
+      return;
+    }
+
     button.classList.add("click");
     removeClass(button, "click");
 
     paragraph.textContent += pressedButtonValue;
+    paragraph.parentElement.classList.add("wordle");
     guesses.push(pressedButtonValue);
     currentColumnPos++;
     positionCount++;
@@ -228,6 +253,9 @@ function deleteButtonFunction() {
   );
   paragraph.textContent = "";
   paragraph.classList.remove("w-letter");
+  paragraph.classList.remove("i-letter");
+  paragraph.classList.remove("q-letter");
+  paragraph.parentElement.classList.remove("wordle");
   positionCount--;
   currentColumnPos--;
 }
@@ -255,6 +283,7 @@ async function playAgainFunction() {
     paragraphDiv.classList.remove("yellow");
     paragraphDiv.classList.remove("grey");
     paragraphDiv.classList.remove("flipAnimation");
+    paragraphDiv.classList.remove("wordle");
     winMessage.textContent = "";
     loseMessage.textContent = "";
   }
@@ -266,6 +295,37 @@ async function playAgainFunction() {
 
   const path = "/update";
   await fetch(path);
+}
+
+function clickTile() {
+  for (let i = 1; i <= 6; i++) {
+    const row = document.querySelector(`.wordle-board-row-${i}`);
+    for (let j = 0; j <= 4; j++) {
+      row.children[j].addEventListener("click", () => {
+        if (guesses.length === 0) {
+          return;
+        }
+
+        if (i !== currentRowPos) {
+          return;
+        }
+
+        if (guesses.includes(-1)) {
+          return;
+        }
+
+        currentColumnPos--;
+        guesses[j] = -1;
+        const paragraph = document.querySelector(`.p-${i}-${j + 1}`);
+        paragraph.textContent = "";
+        paragraph.parentElement.classList.add("orange");
+        paragraph.classList.remove("w-letter");
+        paragraph.classList.remove("i-letter");
+        paragraph.classList.remove("q-letter");
+        paragraph.parentElement.classList.remove("wordle");
+      });
+    }
+  }
 }
 
 function prepareHandles() {
@@ -287,6 +347,7 @@ function addEventHandlers() {
 function pageLoaded() {
   prepareHandles();
   addEventHandlers();
+  clickTile();
 }
 
 window.addEventListener("load", pageLoaded);
