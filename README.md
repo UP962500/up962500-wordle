@@ -8,7 +8,7 @@ A better version of the popular game known as "Wordle" created by me.
 - "Play Again" feature that allows user to play as many times as they want with a random word selected each time.
 - Users are allowed to submit their own words to be used in a game of Wordle given that it is a 5 letter valid dictionary word!
 
-# Explanation of how game logic works
+# Game Logic Explanation
 
 1. You have 6 chances to guess what the word is, and each guess will be accepted as long as it is a valid dictionary word. The word of the day is automatically retrieved from an sqlite database.
   
@@ -26,7 +26,7 @@ A better version of the popular game known as "Wordle" created by me.
   
 6. You have the option to to play an unlimited amount of times by pressing the "Play Again!" button to reset everything (including all your guesses) and start again with a new word. Each time you press the "Play Again!" button, a new random word will be generated from the database.
 
-# Explanation of how I implemented game logic
+# Game Logic Implementation
 
 1. I started off by initalizing a few global variables that I used to make the keyboard and to track certain things about where the users position was on the board. The global variables I used are:
 
@@ -44,13 +44,13 @@ A better version of the popular game known as "Wordle" created by me.
 
 3. Further explanation on server-side: The server-side is where I grab the word needed from the SQLITE database to avoid the word ever reaching the client. It is also where the users guess will be analyzed to decide which colour each letter of their guess will receive. I have a seperate module called "wordCheck.js" that has all the code for breaking down each guess. In there, I made use of the .join, .split, .filter, .indexOf, and the .some methods quite a bit. Whenever I would like the users guess to be a string (for comparison reasons), I turn it into a string using .split(''), and whenever I need the users guess to be an array, I use .join('') to turn it into an array, and I can then use .filter and .indexOf and .some (which are all extremely useful array methods) to figure out which letters were correct/incorrect etc. The .indexOf method was especially useful when deciding whether the users letter was in the correct position or not, which is a very important part of the Wordle logic.
 
-# Reasoning of extra features
+# Reasoning for Extra Features
 
 1. The first feature is a "Play Again" button that allows user to play as many times as they want with a random word selected each time. I added this because one of the major things that bothered me with the original Wordle is the fact that you can only play once a day essentially as you are only given one word per day. I think this makes it boring for users who guess the word too quickly, and I think it is a disadvantage to users who are bad at Wordle and are trying to get better, because one word a day is not enough practice. I also think this feature will be good for the people who really enjoy Wordle and want to play more than just once a day.
 
 2. The second feature is a submit option that allows users to submit their own words to be used in a game of Wordle given that it is a 5 letter valid dictionary word! I understand that a feature like this isn't too useful since I already have enough words to be used from my database, however, I really felt like a feature like this would enhance user experience because it allows the user to feel more involved in the process of the game. I also learned a lot while building this feature so I believe it was worth it overall.
 
-# Explanation of how I implemented extra features
+# Extra Features Implementation
 
 1. For the "Play Again!" feature, I started off by creating an event listener for the "Play Again!" button. I then had to use a for loop where I had my "i" value equal to the current positionCount (this is why I created this global variable) and I just incremented DOWN from there until we hit 1 (the first column of the first row). Now during this for loop, I cleared the textContent of every paragraph on the grid from the position the user was currently at until the beginning of the grid so it was all clear. I also made sure to remove any classLists that coloured any part of the grid so it would all be clear again. I then made a fetch request to my /update endpoint in my server which selects a new random word from the database to be used. Finally, I made sure to reset all the global variables that I used to track positions back to their starting values, including positionCount.
 
