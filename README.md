@@ -1,4 +1,4 @@
-# UP962500 Wordle
+# A Better Wordle
 
 A better version of the popular game known as "Wordle" created by me.
 
