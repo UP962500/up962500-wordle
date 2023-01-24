@@ -1,46 +1,46 @@
-const submit = document.querySelector(".submit");
-const input = document.querySelector(".text-input");
+const submit = document.querySelector('.submit');
+const input = document.querySelector('.text-input');
 
-submit.addEventListener("click", async function submitClick() {
+submit.addEventListener('click', async function submitClick() {
   const data = { val: input.value };
   const word = data.val;
-  const paragraph = document.querySelector(".p-msg");
+  const paragraph = document.querySelector('.p-msg');
 
   const timeOutFunction = () => {
     setTimeout(() => {
-      paragraph.textContent = "";
+      paragraph.textContent = '';
     }, 1500);
-    input.value = "";
+    input.value = '';
   };
 
-  if (word.split("").length !== 5) {
-    paragraph.textContent = "Your word is not of length 5. Please try again.";
+  if (word.split('').length !== 5) {
+    paragraph.textContent = 'Your word is not of length 5. Please try again.';
     timeOutFunction();
     return;
   }
 
   const response = await fetch(
-    `https://dictionary-dot-sse-2020.nw.r.appspot.com/${word}`
+    `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
   );
 
   if (response.status === 404) {
-    paragraph.textContent = "Your word is not valid. Please try again.";
+    paragraph.textContent = 'Your word is not valid. Please try again.';
     timeOutFunction();
     return;
   }
 
   const options = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   };
 
-  const msg = await fetch("/submit", options);
+  const msg = await fetch('/submit', options);
 
   if (!msg.ok) {
-    return console.log("Error!");
+    return console.log('Error!');
   }
 
   const jsonResponse = await msg.json();
