@@ -4,9 +4,9 @@ A better version of the popular game known as "Wordle" created by me.
 
 # What makes this version better?
 
-- No cheating! Users cannot inspect the client code to find the word that they need to guess.
+- No cheating! Users cannot inspect the client code to find the word that they need to guess. This is because word validation is done server-side in this version of Wordle.
 - "Play Again" feature that allows user to play as many times as they want with a random word selected each time.
-- Users are allowed to submit their own words to be used in a game of Wordle given that it is a 5 letter valid dictionary word!
+- Users are allowed to submit their own words to be used in a game of Wordle given that it is a 5 letter valid dictionary word.
 - Added a QoL feature that allows users to click on a letter in the word to edit it instead of having to delete the entire word.
 
 # Game Logic Explanation
