@@ -61,7 +61,7 @@ A better version of the popular game known as "Wordle" created by me.
 
 - Must have NodeJS installed
 
-# Usage
+# Install
 
 1. Run npm install
 2. Run npm start
