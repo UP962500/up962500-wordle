@@ -21,7 +21,7 @@ A better version of the popular game known as "Wordle" created by me.
    - Yellow: Correct letter guessed but it is in the wrong position.
    - Grey: Incorrect letter (letter not in word).
 
-4. If you run out of guesses and do not get it right, a "Game Over! You Lose." message will be displayed.
+4. If you run out of guesses and do not get it right, a "Game Over! You Lose. The word was X" message will be displayed where X would be the word you were supposed to guess.
 
 5. If you guess the correct word, all the tiles of that row will turn green and a "Congratulations! You win." message will be displayed.
 
@@ -29,7 +29,7 @@ A better version of the popular game known as "Wordle" created by me.
 
 # Game Logic Implementation
 
-1. I started off by initalizing a few global variables that I used to make the keyboard and to track certain things about where the users position was on the board. The global variables I used are:
+1. I started off by initializing a few global variables that I used to make the keyboard and to track certain things about where the users position was on the board. The global variables I used are:
 
    - buttons: This was an array I created with all the values of the alphabet letters in a keyboard in order to make it easier to make event listeners for each key. With an array like this, I was able to create event listeners for all those buttons with a simple for loop, instead of manually writing out each event listener for each key.
 
