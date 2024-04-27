@@ -92,22 +92,24 @@ p {
 
 .lose-message {
   color: rgb(151, 23, 23);
-  font-size: 28px;
+  font-size: 14px;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  min-height: 16px;
 }
 
 .incorrect-message {
   color: rgb(167, 0, 0);
-  font-size: 28px;
+  font-size: 14px;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  min-height: 16px;
 }
 
 .intro-container {
@@ -135,6 +137,8 @@ p {
 }
 
 .student-id {
+  margin: 0;
+  margin-bottom: 5px;
   color: black;
   font-family: "Arial";
   font-weight: normal;
@@ -143,12 +147,13 @@ p {
 
 .win-message {
   color: rgb(38, 134, 38);
-  font-size: 28px;
+  font-size: 14px;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  min-height: 16px;
 }
 
 .wordle-board-row-1,
@@ -245,7 +250,7 @@ p {
 }
 
 .orange {
-  border: 2px solid orange
+  border: 2px solid orange;
 }
 
 .i-letter {

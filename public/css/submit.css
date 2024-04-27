@@ -1,31 +1,23 @@
-.container {
+.container-1 {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-}
-
-.container-1, .container-2, .container-3 {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  height: 100vh;
 }
 
 .h1-message {
-  margin-top: 300px;
   width: 1100px;
   color: rgb(99, 88, 88);
   font-family: Arial;
   font-weight: bold;
-  font-size: 34px; 
+  font-size: 34px;
 }
 
 a {
   color: #888888;
   text-decoration: none;
   font-size: 38px;
-  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -37,24 +29,16 @@ a:active {
   background-color: #e7e7e7;
 }
 
-.a-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .label {
-  color: rgb(99, 88, 88);
+  color: #a7a6a6;
   font-family: Arial;
   font-weight: bold;
-  font-size: 48px;
-  margin-top: 300px;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin-top: 30px;
 }
 
 .submit {
-  background-color: rgb(99, 88, 88);
+  background-color: #a7a6a6;
   font-size: 20px;
   font-weight: bold;
   border: none;
@@ -72,7 +56,7 @@ a:active {
 }
 
 .text-input {
-  text-align: center;;
+  text-align: center;
   width: 200px;
   height: 50px;
   margin-bottom: 20px;
@@ -80,6 +64,12 @@ a:active {
 
 .p-msg {
   color: rgb(175, 61, 61);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
+  min-height: 30px;
+  margin: 14px;
+}
+
+.p-green {
+  color: green;
 }
