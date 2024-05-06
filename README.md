@@ -1,6 +1,6 @@
 # A Better Wordle
 
-A better version of the popular game known as "Wordle" created by me.
+A better version of the popular game known as "Wordle" created by me. You can play my custom version of Wordle here: https://a-better-wordle-production.up.railway.app/
 
 # What makes this version better?
 
