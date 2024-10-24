@@ -2,7 +2,7 @@
 
 A better version of the popular game known as "Wordle" created by me.  
 
-You can play my custom version of Wordle here: https://a-better-wordle-production.up.railway.app/
+You can play my custom version of Wordle here: https://a-better-wordle.onrender.com
 
 # What makes this version better?
 
